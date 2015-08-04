@@ -1,4 +1,4 @@
-package com.sen.fumutown.data.provider;
+package com.sen.fenmutown.data.provider;
 
 import android.content.ContentProvider;
 import android.content.ContentValues;

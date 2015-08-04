@@ -1,4 +1,4 @@
-package com.sen.fumutown.fragment;
+package com.sen.fenmutown.fragment;
 
 import android.support.v4.app.Fragment;
 
