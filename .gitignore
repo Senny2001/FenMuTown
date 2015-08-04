@@ -1,7 +1,6 @@
 # built application files
 *.apk
 *.ap_
-gradle.properties
 gradlew
 gradlew.bat
 settings.gradle
