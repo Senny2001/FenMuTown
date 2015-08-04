@@ -3,7 +3,6 @@
 *.ap_
 gradlew
 gradlew.bat
-settings.gradle
 gradle
 
 # files for the dex VM
