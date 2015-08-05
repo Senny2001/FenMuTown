@@ -7,7 +7,7 @@ import android.support.v4.app.FragmentTransaction;
 import com.sen.fenmutown.fragment.LauncherFragment;
 
 /**
- * Created by Black_Horse on 2015/7/29.
+ * Created by Senny on 2015/7/29.
  */
 public class MainActivity extends FragmentActivity {
 

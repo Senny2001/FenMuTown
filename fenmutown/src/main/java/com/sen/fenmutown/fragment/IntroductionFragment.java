@@ -1,22 +1,18 @@
 package com.sen.fenmutown.fragment;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.sen.fenmutown.R;
-
 /**
- * Created by Senny on 2015/7/29.
+ * Created by Senny on 2015/8/5.
  */
-public class LauncherFragment extends Fragment {
+public class IntroductionFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.layout_fragment_launcher, null);
-        return view;
+        return super.onCreateView(inflater, container, savedInstanceState);
     }
 }
