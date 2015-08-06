@@ -19,15 +19,16 @@ public class LauncherCircle extends View {
     private float fltCircleLeft;
     private float fltCircleTop;
     private float fltCircleRadius;
-    private float fltStroke = 10;
+    private float fltStroke = 6;
     private float fltRatioArc = (float) (2 * Math.PI / 360);
     private int intAngleOffset = 0;
     private int intSweepAngle = 90;
-    private int startAngle1 = -10;
-    private int startAngle2 = 80;
-    private int startAngle3 = 170;
-    private int startAngle4 = 260;
-    private boolean isBlnMoveCircle = false;
+    private int intStartAngle1 = -10;
+    private int intStartAngle2 = 80;
+    private int intStartAngle3 = 170;
+    private int intStartAngle4 = 260;
+    private boolean isBlnAnimation = false;
+    private boolean isBlnRotateCircle = false;
     private boolean isBlnFirstInvalidate = true;
     private Paint circlePaint;
     private RectF circleRectF;
@@ -83,34 +84,36 @@ public class LauncherCircle extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        drawArc(canvas, startAngle1 + intAngleOffset, intSweepAngle);
-        drawArc(canvas, startAngle2 + intAngleOffset, intSweepAngle);
-        drawArc(canvas, startAngle3 + intAngleOffset, intSweepAngle);
-        drawArc(canvas, startAngle4 + intAngleOffset, intSweepAngle);
+        drawArc(canvas, intStartAngle1 + intAngleOffset, intSweepAngle);
+        drawArc(canvas, intStartAngle2 + intAngleOffset, intSweepAngle);
+        drawArc(canvas, intStartAngle3 + intAngleOffset, intSweepAngle);
+        drawArc(canvas, intStartAngle4 + intAngleOffset, intSweepAngle);
 
-        if (isBlnMoveCircle) {
-            if (intAngleOffset >= 90) {
-                intAngleOffset = INT_MOVE_ANGLE_OFFSET;
-            } else {
-                intAngleOffset += INT_MOVE_ANGLE_OFFSET;
-            }
-            invalidate();
-        }
-        if ((intSweepAngle - INT_MOVE_ANGLE_OFFSET) >= INT_SWEEP_TARGET_ANGLE) {
-            intSweepAngle -= INT_MOVE_ANGLE_OFFSET;
-            startAngle1 += INT_MOVE_ANGLE_OFFSET;
-            startAngle2 += INT_MOVE_ANGLE_OFFSET;
-            startAngle3 += INT_MOVE_ANGLE_OFFSET;
-            startAngle4 += INT_MOVE_ANGLE_OFFSET;
-            if (isBlnFirstInvalidate) {
-                isBlnFirstInvalidate = false;
-                postInvalidateDelayed(500);
-            } else {
+        if (isBlnAnimation) {
+            if (isBlnRotateCircle) {
+                if (intAngleOffset >= 90) {
+                    intAngleOffset = INT_MOVE_ANGLE_OFFSET;
+                } else {
+                    intAngleOffset += INT_MOVE_ANGLE_OFFSET;
+                }
                 invalidate();
             }
-        } else if (intSweepAngle == INT_SWEEP_TARGET_ANGLE) {
-            isBlnMoveCircle = true;
-            invalidate();
+            if ((intSweepAngle - INT_MOVE_ANGLE_OFFSET) >= INT_SWEEP_TARGET_ANGLE) {
+                intSweepAngle -= INT_MOVE_ANGLE_OFFSET;
+                intStartAngle1 += INT_MOVE_ANGLE_OFFSET;
+                intStartAngle2 += INT_MOVE_ANGLE_OFFSET;
+                intStartAngle3 += INT_MOVE_ANGLE_OFFSET;
+                intStartAngle4 += INT_MOVE_ANGLE_OFFSET;
+                if (isBlnFirstInvalidate) {
+                    isBlnFirstInvalidate = false;
+                    postInvalidateDelayed(500);
+                } else {
+                    invalidate();
+                }
+            } else if (intSweepAngle == INT_SWEEP_TARGET_ANGLE) {
+                isBlnRotateCircle = true;
+                invalidate();
+            }
         }
     }
 
@@ -132,7 +135,7 @@ public class LauncherCircle extends View {
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        isBlnMoveCircle = false;
+        isBlnRotateCircle = false;
         circlePaint = null;
         circleRectF = null;
     }
